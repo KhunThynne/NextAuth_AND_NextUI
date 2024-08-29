@@ -1,6 +1,9 @@
+"use client"
 import React, { useState, useEffect, useRef } from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Checkbox, Link } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Checkbox, Link, useDisclosure } from "@nextui-org/react";
 import { HiEye, HiOutlineEye, HiUsers } from "react-icons/hi2";
+import ForGotModal from "./forgot";
+import { signIn } from "next-auth/react";
 
 interface FormData {
     email: string;
@@ -13,7 +16,7 @@ export default function LoginModal({ modal }: { modal: any }) {
     const [formData, setFormData] = useState<FormData>({ email: '', password: '', remember: false });
     const [valid, setValid] = useState<{ email: boolean; password: boolean }>({ email: false, password: false });
     const formRef = useRef<HTMLFormElement>(null);
-
+    const modalForgot = useDisclosure();
     const toggleVisibility = () => setIsVisible(!isVisible);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,29 +28,43 @@ export default function LoginModal({ modal }: { modal: any }) {
     };
 
     const handleSignInClick = () => {
-        
+
         if (formRef.current) {
-    
+
             formRef.current.requestSubmit();
         }
     };
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-   
-        const emailValid = formData.email.includes('@'); // ตัวอย่างการตรวจสอบอีเมลเบื้องต้น
-        const passwordValid = formData.password.length > 0; // ตัวอย่างการตรวจสอบรหัสผ่านเบื้องต้น
-    
-        setValid({ email: !emailValid, password: !passwordValid });
 
-        if (emailValid && passwordValid) {
-            console.log("Form Data Submitted:", formData);
-            // modal.onClose();
+        const emailValid = formData.email.includes('@');
+        const passwordValid = formData.password.length > 0;
+
+        setValid({ email: !emailValid, password: !passwordValid });
+        const result = await signIn("credentials", {
+            redirect: false,
+            email: formData.email,
+            password: formData.password,
+            callbackUrl: `${window.location.origin}/`,
+        })
+
+        if (result?.error) {
+            // จัดการกับข้อผิดพลาด
+            console.error(result.error)
+        } else {
+            // ไปยังหน้า dashboard หรือหน้าอื่น ๆ ตาม callbackUrl
+            window.location.href = result?.url || "/"
         }
+        // if (emailValid && passwordValid) {
+        //     console.log("Form Data Submitted:", formData);
+        //     // modal.onClose();
+        // }
     };
 
 
 
-    return (
+
+    return (<>
         <Modal
             isDismissable={false}
             backdrop="blur"
@@ -60,7 +77,7 @@ export default function LoginModal({ modal }: { modal: any }) {
                     <>
                         <ModalHeader className="flex flex-col">Log in</ModalHeader>
                         <ModalBody>
-                         
+
                             <form onSubmit={handleSubmit} ref={formRef} >
                                 <Input
                                     autoFocus
@@ -101,17 +118,15 @@ export default function LoginModal({ modal }: { modal: any }) {
                                     >
                                         Remember me
                                     </Checkbox>
-                                    <Link color="primary" href="#" size="sm">
+                                    <Button variant="light" color="primary" href="#" size="sm" onPress={() => { modalForgot.onOpen() }}>
                                         Forgot password?
-                                    </Link>
+                                    </Button>
                                 </div>
                             </form>
                         </ModalBody>
                         <ModalFooter>
-                            <Button color="danger" variant="flat" onPress={onClose}>
-                                Close
-                            </Button>
-                            <Button color="primary" onPress={handleSignInClick} type="submit">
+
+                            <Button fullWidth color="primary" onPress={handleSignInClick} type="submit">
                                 Sign in
                             </Button>
                         </ModalFooter>
@@ -119,5 +134,9 @@ export default function LoginModal({ modal }: { modal: any }) {
                 )}
             </ModalContent>
         </Modal>
+
+
+        <ForGotModal modal={modalForgot} />
+    </>
     );
 }
