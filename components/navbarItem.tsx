@@ -3,13 +3,13 @@ import NextLink from "next/link";
 import { link as linkStyles } from "@nextui-org/theme";
 import { NavbarItem } from "@nextui-org/navbar";
 import clsx from "clsx";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { NavItem } from "@/config/site";
 
 export default function Item({ href, label }: NavItem) {
     const path = usePathname();
-
-    const isActive = path === `/${"th" || "en"}${href === "/" ? "" : href}`;
+    const { locale } = useParams();
+    const isActive = path === `/${locale}${href === "/" ? "" : href}`;
 
     return (
         <NavbarItem key={href} isActive={isActive}>
@@ -20,7 +20,7 @@ export default function Item({ href, label }: NavItem) {
                 )}
                 href={href}
             >
-           
+
 
                 {label}
             </NextLink>
