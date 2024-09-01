@@ -64,7 +64,7 @@ export default function ForGotModal({ modal }: { modal: any }) {
 
                             <form onSubmit={handleSubmit} ref={formRef} >
                                 <Input
-                                    autoFocus
+                                  
                                     endContent={<HiUsers />}
                                     label="Email"
                                     placeholder="Enter your email"
@@ -79,7 +79,7 @@ export default function ForGotModal({ modal }: { modal: any }) {
                             </form>
                         </ModalBody>
                         <ModalFooter>
-                         
+
                             <Button fullWidth color="primary" onPress={handleSignInClick} type="submit">
                                 Send
                             </Button>

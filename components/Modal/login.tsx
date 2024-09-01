@@ -80,7 +80,7 @@ export default function LoginModal({ modal }: { modal: any }) {
 
                             <form onSubmit={handleSubmit} ref={formRef} >
                                 <Input
-                                    autoFocus
+                                   
                                     endContent={<HiUsers />}
                                     label="Email"
                                     placeholder="Enter your email"

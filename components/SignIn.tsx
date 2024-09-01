@@ -1,7 +1,7 @@
-import { getCsrfToken } from "next-auth/react"
+import { getCsrfToken } from 'next-auth/react';
 
 export default async function SignInPage() {
-    const csrfToken = await getCsrfToken()
+    const csrfToken = await getCsrfToken();
 
     return (
         <form method="post" action="/api/auth/signin/email">

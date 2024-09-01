@@ -59,9 +59,9 @@ export const Navbar = () => {
           </NextLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
+          {siteConfig.navItems.map((item, index) => (
 
-            <Item label={item.label} href={item.href} />
+            <Item key={index} label={item.label} href={item.href} />
 
           ))}
         </ul>
