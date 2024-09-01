@@ -9,8 +9,7 @@ import { NavItem } from "@/config/site";
 export default function Item({ href, label }: NavItem) {
     const path = usePathname();
 
-
-    const isActive = path === href;
+    const isActive = path === `/${"th" || "en"}${href === "/" ? "" : href}`;
 
     return (
         <NavbarItem key={href} isActive={isActive}>
@@ -21,6 +20,8 @@ export default function Item({ href, label }: NavItem) {
                 )}
                 href={href}
             >
+           
+
                 {label}
             </NextLink>
         </NavbarItem>

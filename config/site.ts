@@ -16,6 +16,9 @@ export const siteConfig = {
     {
       label: "Modal",
       href: "/modal",
+    }, {
+      label: "Document",
+      href: "/document",
     }
 
   ],

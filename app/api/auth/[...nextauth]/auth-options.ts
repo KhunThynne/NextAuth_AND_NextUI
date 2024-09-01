@@ -13,12 +13,12 @@ export const authOptions = {
                 const fakeUser = {
                     id: "1",
                     name: "J Smith",
-                    email: "jsmith@example.com",
+                    email: "test@example.com",
 
                 }
-
-                if (credentials?.email === 'jsmith@example.com' &&
-                    credentials?.password === 'password123') {
+              
+                if (credentials?.email === 'testh@example.com' &&
+                    credentials?.password === '123') {
                     return fakeUser
                 } else {
                     return null
@@ -26,12 +26,11 @@ export const authOptions = {
             }
         })
     ],
+    secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
-     
+        
     },
-    pages: {
-        signIn: '/modal', // คุณสามารถกำหนดหน้าล็อกอินที่ต้องการได้
-    },
+   
 }
 
 export default NextAuth(authOptions)
