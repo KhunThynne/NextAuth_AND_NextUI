@@ -10,6 +10,7 @@ import {
 import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
+
 import { Input } from "@nextui-org/input";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
@@ -26,6 +27,7 @@ import {
   Logo,
 } from "@/components/icons";
 import Item from "./navbarItem";
+import SwitchLangueue from "./SwitchLangueue";
 
 export const Navbar = () => {
   const searchInput = (
@@ -105,8 +107,9 @@ export const Navbar = () => {
         <ThemeSwitch />
         <NavbarMenuToggle />
       </NavbarContent>
-
+      <SwitchLangueue />
       <NavbarMenu>
+       
         {searchInput}
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (

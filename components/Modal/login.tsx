@@ -4,6 +4,7 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input
 import { HiEye, HiOutlineEye, HiUsers } from "react-icons/hi2";
 import ForGotModal from "./forgot";
 import { signIn } from "next-auth/react";
+import { toast } from "react-toastify";
 
 interface FormData {
     email: string;
@@ -49,7 +50,7 @@ export default function LoginModal({ modal }: { modal: any }) {
         })
 
         if (result?.error) {
-            // จัดการกับข้อผิดพลาด
+            toast.error(result.error)
             console.error(result.error)
         } else {
             // ไปยังหน้า dashboard หรือหน้าอื่น ๆ ตาม callbackUrl

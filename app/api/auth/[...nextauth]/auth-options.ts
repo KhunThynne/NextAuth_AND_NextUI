@@ -17,7 +17,7 @@ export const authOptions = {
 
                 }
 
-                if (credentials?.email === 'testh@example.com' &&
+                if (credentials?.email === 'test@example.com' &&
                     credentials?.password === '123') {
                     return fakeUser
                 } else {
@@ -29,12 +29,13 @@ export const authOptions = {
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
         async redirect({ url, baseUrl }: any) {
-            // กำหนดเส้นทางที่ต้องการหลังจากการล็อกอินสำเร็จ
+
             if (url.startsWith(baseUrl)) return url
             return baseUrl
         }
 
     },
+
 
 }
 

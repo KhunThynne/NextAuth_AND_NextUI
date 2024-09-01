@@ -8,8 +8,11 @@ import {
   Button,
   User,
 } from "@nextui-org/react";
+import { useTranslations } from "next-intl";
 
 export default function DocumentPage() {
+  const t = useTranslations('Document');
+
   return (
     <div className="md:flex grid gap-10 ">
       <div className="md:w-[90%] ">
@@ -51,9 +54,9 @@ export default function DocumentPage() {
               src: "https://avatars.githubusercontent.com/u/88494232?s=96&v=4",
             }}
             description="Development"
-            name="Chanathip Parnsa-ard"
+            name={t("fullname")}
           />
-          <div className="font-bold">{`Hello! I'm Thynne`} </div>
+          <div className="font-bold">{t("head")} </div>
         </div>
 
         <p className="indent-10 leading-8">

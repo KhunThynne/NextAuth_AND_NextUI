@@ -1,15 +1,12 @@
-import {defineRouting} from 'next-intl/routing';
-import {createSharedPathnamesNavigation} from 'next-intl/navigation';
+import {notFound} from 'next/navigation';
+import {getRequestConfig} from 'next-intl/server';
+import {routing} from './routing';
  
-export const routing = defineRouting({
-  // A list of all locales that are supported
-  locales: ['en', 'th'],
+export default getRequestConfig(async ({locale}) => {
+  // Validate that the incoming `locale` parameter is valid
+  if (!routing.locales.includes(locale as any)) notFound();
  
-  // Used when no locale matches
-  defaultLocale: 'en'
+  return {
+    messages: (await import(`../messages/${locale}.json`)).default
+  };
 });
- 
-// Lightweight wrappers around Next.js' navigation APIs
-// that will consider the routing configuration
-export const {Link, redirect, usePathname, useRouter} =
-  createSharedPathnamesNavigation(routing);
