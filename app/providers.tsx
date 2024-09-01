@@ -6,13 +6,15 @@ import { useRouter } from "next/navigation";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import AuthProvider from "./api/auth/[...nextauth]/auth-provider";
+import { Session } from "next-auth";
 
 export interface ProvidersProps {
   children: React.ReactNode;
   themeProps?: ThemeProviderProps;
+  session?: Session;
 }
 
-export function Providers({ children, themeProps }: ProvidersProps) {
+export function Providers({ children, themeProps, session }: ProvidersProps) {
   const router = useRouter();
 
 
@@ -20,10 +22,11 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
     <NextUIProvider navigate={router.push}>
       <NextThemesProvider {...themeProps}>
-        {children}
+        <AuthProvider session={session!}>
+          {children}
 
 
-
+        </AuthProvider>
       </NextThemesProvider>
     </NextUIProvider>
 

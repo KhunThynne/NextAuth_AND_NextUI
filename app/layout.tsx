@@ -35,7 +35,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions)
+  const session: any = await getServerSession(authOptions)
 
   return (
 
