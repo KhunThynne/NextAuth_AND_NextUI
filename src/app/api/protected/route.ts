@@ -4,7 +4,10 @@ import { getServerSession } from "next-auth/next";
 import { NextResponse } from "next/server";
 import authOptions from "../auth/[...nextauth]/auth-options";
 
-export async function GET(req: Request) {
+export async function GET(
+    // req: Request
+
+) {
     const session = await getServerSession(authOptions);
 
     if (!session) {

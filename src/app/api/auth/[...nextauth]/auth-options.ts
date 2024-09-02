@@ -9,7 +9,7 @@ export const authOptions = {
                 email: { label: "Email", type: "text", placeholder: "jsmith@example.com" },
                 password: { label: "Password", type: "password" }
             },
-            async authorize(credentials, req) {
+            async authorize(credentials) {
                 const fakeUser = {
                     id: "1",
                     name: "J Smith",
