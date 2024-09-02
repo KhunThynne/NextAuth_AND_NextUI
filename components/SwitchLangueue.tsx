@@ -1,8 +1,8 @@
 "use client";
 
-import { useRouter } from "@/i18n/routing";
+
 import { Button } from "@nextui-org/button";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 export default function IndexPage() {
     const router = useRouter();
@@ -15,17 +15,17 @@ export default function IndexPage() {
         // Get current pathname
         const pathname = window.location.pathname;
 
-        // Replace locale in pathname
+
         const newPathname = pathname.replace(`/${locale}`, `/${newLocale}`);
 
-        // Push to the new path with updated locale
-        router.push(newPathname, { locale: newLocale });
+        router.push(newPathname);
+        router.refresh();
     };
 
     return (
         <div className="flex gap-2">
             <Button onClick={switchLocale} size="sm">
-                {locale === "en" ? "Switch to Thai" : "Switch to English"}
+                Switch to   {locale === "en" ? " TH" : " EN"}
             </Button>
         </div>
     );

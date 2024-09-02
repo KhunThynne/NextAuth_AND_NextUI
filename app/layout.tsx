@@ -45,8 +45,9 @@ export default async function RootLayout({
 
     children: React.ReactNode;
 }) {
-    const session: any = await getServerSession(authOptions)
+    const session = await getServerSession(authOptions)
     const messages = await getMessages();
+
     return (
 
         <html suppressHydrationWarning lang="en" >
@@ -60,7 +61,8 @@ export default async function RootLayout({
             >
 
                 <NextIntlClientProvider messages={messages}>
-                    <AuthProvider session={session}>
+                    {JSON.stringify(session)}
+                    <AuthProvider session={session!}>
                         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }} >
 
 
