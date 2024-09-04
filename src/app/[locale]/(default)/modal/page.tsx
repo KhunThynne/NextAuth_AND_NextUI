@@ -12,17 +12,18 @@ export default function App() {
         <>
 
 
-            {status === "unauthenticated" ?
-                <div className="flex flex-wrap gap-3">
-                    <Button onPress={() => { modal.onOpen() }}>Open Login</Button>
-                </div>
-
-                : <Button onClick={() => { signOut() }}>
+            {status === "authenticated" ?
+                <Button onClick={() => { signOut() }}>
                     Logout
-                </Button>}
+                </Button>
 
-        
-    
+                :
+                <Button onPress={() => { modal.onOpen() }}>Open Login</Button>
+
+            }
+
+
+
             <LoginModal modal={modal} />
 
 

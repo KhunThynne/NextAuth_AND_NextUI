@@ -11,16 +11,20 @@ export default function SwitchLangueue() {
 
         const pathname = window.location.pathname;
         const newPathname = pathname.replace(`/${locale}`, `/${newLocale}`);
- 
+
         router.push(newPathname);
         router.refresh();
     }, [locale]);
+    const LocalCondition = locale === "en" ? "EN" : "TH"
 
     return (
-        <div className="flex gap-2">
-            <Button size="sm" onClick={switchLocale} >
-                Switch to   {locale === "en" ? " TH" : " EN"}
-            </Button>
+
+        <div onClick={switchLocale} className="border cursor-pointer  rounded " >
+            <p className={`text-sm  rounded p-[.2em] hover:opacity-90  
+               font-bold text-[rgb(113, 113, 122)]`}>
+                {LocalCondition}
+            </p>
         </div>
+
     );
 }

@@ -2,6 +2,7 @@
 
 import { Session } from 'next-auth';
 import { SessionContextValue, SessionProvider } from 'next-auth/react';
+import { useEffect } from 'react';
 
 export default function AuthProvider({
   children,
@@ -11,6 +12,10 @@ export default function AuthProvider({
   session: Session;
 }): JSX.Element {
 
+  useEffect(() => {
 
-  return <SessionProvider session={session}>{children}</SessionProvider>;
+    console.log("TEst")
+  }, [session])
+
+  return <SessionProvider session={session} >{children}</SessionProvider>;
 }

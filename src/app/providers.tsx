@@ -9,7 +9,7 @@ import { ThemeProviderProps } from "next-themes/dist/types";
 
 import { ToastContainer } from "react-toastify";
 import AuthProvider from "@/app/api/auth/[...nextauth]/auth-provider";
-import { NextIntlClientProvider } from "next-intl";
+import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 import { Session } from "next-auth";
 
 
@@ -18,7 +18,7 @@ export interface ProvidersProps {
   children: React.ReactNode;
   themeProps?: ThemeProviderProps;
   session: Session;
-  messages: any;
+  messages: AbstractIntlMessages | undefined;
 }
 
 export function Providers({ children, themeProps, session, messages }: ProvidersProps) {
@@ -29,7 +29,8 @@ export function Providers({ children, themeProps, session, messages }: Providers
 
 
     <NextIntlClientProvider messages={messages!} locale="en">
-      <AuthProvider session={session}>
+
+      <AuthProvider session={session || undefined}>
         <NextUIProvider navigate={router.push}>
           <NextThemesProvider {...themeProps}>
             {children}

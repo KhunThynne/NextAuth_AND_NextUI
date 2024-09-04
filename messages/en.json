@@ -1,7 +1,10 @@
 {
     "Document": {
         "fullname": "Chanathip",
-        "lastname": "Parnsa-ard",
-        "head":"Hello! I'm Thynne"
+        "lastname": "Parnsa-ard"
+    },
+    "Introduce": {
+        "head": "Hello! I'm Thynne",
+        "description": "A passionate and experienced freelance web developer. I specialize in creating modern, responsive websites and web applications using the latest technologies. Whether you need a full-stack solution, a front-end interface, or back-end support, I’m here to help bring your ideas to life. If you’re looking for a reliable developer to collaborate on your next project, feel free to get in touch. Let’s build something amazing together! "
     }
 }
