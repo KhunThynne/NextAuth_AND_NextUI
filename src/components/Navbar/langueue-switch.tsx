@@ -15,16 +15,14 @@ export default function SwitchLangueue() {
         router.push(newPathname);
         router.refresh();
     }, [locale]);
-    const LocalCondition = locale === "en" ? "EN" : "TH"
+
 
     return (
-
-        <div onClick={switchLocale} className="border cursor-pointer  rounded " >
+        <button onClick={switchLocale} className="border cursor-pointer  rounded " >
             <p className={`text-sm  rounded p-[.2em] hover:opacity-90  
                font-bold text-[rgb(113, 113, 122)]`}>
-                {LocalCondition}
+                {locale === "en" ? "EN" : "TH"}
             </p>
-        </div>
-
+        </button>
     );
 }
