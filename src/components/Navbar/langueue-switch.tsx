@@ -2,6 +2,7 @@
 import { Button } from "@nextui-org/button";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+
 export default function SwitchLangueue() {
     const router = useRouter();
     const { locale } = useParams();
